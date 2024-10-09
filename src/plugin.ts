@@ -1,11 +1,10 @@
-import payload from 'payload';
 import type { Config, Plugin } from 'payload/config';
-import { collections } from './collections';
+import { SimpleWebsitePluginOptions } from './types';
+import { Media, Pages } from './collections';
 
-export const simpleWebsitePlugin = (): Plugin => (
+export const simpleWebsitePlugin = (options?: Partial<SimpleWebsitePluginOptions>): Plugin => (
 	config: Config
 ) => {
-	payload.logger.info('PLUGIN ACTIVATED');
-	config.collections?.push(...collections);
+	config.collections?.push(Pages(config), Media(config, options));
 	return config
 }

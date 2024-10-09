@@ -1,3 +1,2 @@
-import { CollectionConfig } from "payload/dist/exports/types";
-
-export const collections: CollectionConfig[] = [];
+export { Pages } from './pages/index';
+export { Media } from './media/index';
