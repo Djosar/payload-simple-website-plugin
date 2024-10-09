@@ -31,7 +31,7 @@ export const Pages: CollectionFactory = (config: Config, opts?: Partial<SimpleWe
 							name: 'blocks',
 							type: 'blocks',
 							blocks: [
-								...blocks
+								...(opts?.collections?.pages.blocks ?? []) 
 							]
 						}
 					] 

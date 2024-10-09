@@ -10,6 +10,7 @@ import { buildConfig } from 'payload/config'
 import { simpleWebsitePlugin } from '../../src/index';
 
 import Users from './collections/Users'
+import { Block } from 'payload/types'
 
 export default buildConfig({
 	admin: {
@@ -26,7 +27,13 @@ export default buildConfig({
 	},
 	plugins: [
 		payloadCloud(),
-		simpleWebsitePlugin()
+		simpleWebsitePlugin({
+			collections: {
+				pages: {
+					blocks: ([] as Block[])
+				}
+			}
+		})
 	],
 	db: mongooseAdapter({
 		url: process.env.DATABASE_URI,
