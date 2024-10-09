@@ -1,0 +1,1 @@
+export { simpleWebsitePlugin } from './plugin';
