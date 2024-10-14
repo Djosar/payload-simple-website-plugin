@@ -26,6 +26,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create version tag
         run: |
-          $TAG=v$(npm pkg get version | tr -d '"')
-          git tag $TAG
-          git push origin $TAG 
+          git tag v$(npm pkg get version | tr -d '"')
+          git push origin v$(npm pkg get version | tr -d '"')
