@@ -28,3 +28,5 @@ jobs:
         run: |
           git tag v$(npm pkg get version | tr -d '"')
           git push origin v$(npm pkg get version | tr -d '"')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
