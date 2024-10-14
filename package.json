@@ -1,5 +1,5 @@
 {
-	"name": "@djosar/simple-website-plugin",
+	"name": "@djosar/payload-simple-website-plugin",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Djosar/payload-simple-website-plugin.git"
