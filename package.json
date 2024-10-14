@@ -1,5 +1,6 @@
 {
 	"name": "@djosar/simple-website-plugin",
+	"repository": "https://github.com/Djosar/payload-simple-website-plugin",
 	"version": "1.0.0",
 	"description": "My Personal simple website setup for payload",
 	"keywords": [
