@@ -1,22 +1,25 @@
-import { Config } from "payload/config";
 import { CollectionConfig } from "payload/dist/exports/types";
-import { CollectionFactory, SimpleWebsitePluginOptions } from "../../types";
+import { CollectionFactory } from "../../types";
+import { baseCollection } from "../collection";
 
-export const Media: CollectionFactory = (_: Config, opts?: Partial<SimpleWebsitePluginOptions>): CollectionConfig => ({
-	slug: 'media',
-	access: opts?.collections?.pages.access ?? {},
-	admin: {
-		group: 'content'
+export const Media: CollectionFactory = (config, opts): CollectionConfig => baseCollection(
+	'media',
+	{
+		slug: 'media',
+		admin: {
+			group: 'content'
+		},
+		upload: {
+			staticURL: opts?.collections?.media?.url ?? '/media',
+			staticDir: opts?.collections?.media?.directory ?? 'media'
+		},
+		fields: [
+			{
+				name: 'alt',
+				type: 'text',
+				required: true
+			}
+		]
 	},
-	upload: {
-		staticURL: opts?.collections?.media?.url ?? '/media',
-		staticDir: opts?.collections?.media?.directory ?? 'media'
-	},
-	fields: [
-		{
-			name: 'alt',
-			type: 'text',
-			required: true
-		}
-	]
-})
+	opts
+)
