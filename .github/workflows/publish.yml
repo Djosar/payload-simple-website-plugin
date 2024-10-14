@@ -39,3 +39,4 @@ jobs:
           artifacts: release/*.tgz
           body: Draft, please replace
           draft: true
+          token: ${{ secrets.GITHUB_TOKEN }}
