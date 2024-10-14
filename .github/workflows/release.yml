@@ -40,6 +40,6 @@ jobs:
         with:
           tag: ${{ github.ref }}
           name: ${{ github.ref }}
-          artifacts: release
+          artifacts: release/**
           body: Draft, please replace
           draft: true
