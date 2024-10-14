@@ -4,14 +4,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  publish_package:
+    name: Publish NPM Package
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.0
-      - name: Build
-        uses: actions/setup-node@v4
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: 20
-      - run: pnpm i
-      - run: pnpm build
+          version: 9
+          run_install: true
+      - name: Authenticate to npm registry
+        run: |
+          echo "@djosar:registry=https://npm.pkg.github.com/" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+      - name: Install dependencies
+        run: pnpm install
+      - name: Publish package to Registry
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create version tag
+        run: |
+          git tag v$(npm pkg get version | tr -d '"')
