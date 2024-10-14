@@ -27,3 +27,10 @@ jobs:
         with:
           name: package
           path: dist
+      - name: Create Release Draft
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref }}
+          artifacts: 'package'
+          body: Draft, please replace
+          draft: true
