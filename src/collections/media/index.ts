@@ -4,6 +4,10 @@ import { CollectionFactory, SimpleWebsitePluginOptions } from "../../types";
 
 export const Media: CollectionFactory = (_: Config, opts?: Partial<SimpleWebsitePluginOptions>): CollectionConfig => ({
 	slug: 'media',
+	access: opts?.collections?.pages.access ?? {},
+	admin: {
+		group: 'content'
+	},
 	upload: {
 		staticURL: opts?.collections?.media?.url ?? '/media',
 		staticDir: opts?.collections?.media?.directory ?? 'media'

@@ -6,7 +6,9 @@ import { CollectionFactory, SimpleWebsitePluginOptions } from "../../types";
 
 export const Pages: CollectionFactory = (config: Config, opts?: Partial<SimpleWebsitePluginOptions>): CollectionConfig => ({
 	slug: 'pages',
+	access: opts?.collections?.pages.access ?? {},
 	admin: {
+		group: 'content',
 		useAsTitle: 'title',
 		defaultColumns: [
 			'title',
