@@ -32,6 +32,8 @@ jobs:
         run: |
           mkdir release
           pnpm pack --pack-destination=release
+      - name: Publish
+        run: pnpm publish
       - name: Update ENV
         run: echo "VERSION=$(npm pkg get version | tr -d '\"')" >> $GITHUB_ENV
       - name: Create Release Draft
