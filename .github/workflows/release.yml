@@ -25,10 +25,17 @@ jobs:
         run: pnpm install
       - name: Build Project
         run: pnpm build
+      - name: Upload Artifact
+        id: artifact-upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: release
+          path: dist/**
       - name: Create Release Draft
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.ref }}
-          artifacts: dist/**
+          name: ${{ github.ref }}
+          artifacts: ${{ steps.artifact-upload.outputs.artifact-url }}
           body: Draft, please replace
           draft: true
