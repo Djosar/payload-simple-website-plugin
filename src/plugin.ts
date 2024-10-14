@@ -1,10 +1,19 @@
 import type { Config, Plugin } from 'payload/config';
 import { SimpleWebsitePluginOptions } from './types';
 import { Media, Pages } from './collections';
+import { RoutingSettings } from './globals/settings';
+import { Navigations } from './collections/navigations';
 
 export const simpleWebsitePlugin = (options: SimpleWebsitePluginOptions): Plugin => (
 	config: Config
 ) => {
-	config.collections?.push(Pages(config), Media(config, options));
+	config.collections?.push(
+		Pages(config, options),
+		Media(config, options),
+		Navigations(config, options)
+	);
+	config.globals?.push(
+		RoutingSettings(config, options)
+	);
 	return config
 }
