@@ -14,6 +14,7 @@ export type SimpleWebsitePluginOptions = {
 			directory?: string;
 			url?: string,
 		} & BaseOptions;
+		navigations: BaseOptions;
 	};
 	globals: {
 		routingSettings: BaseOptions
