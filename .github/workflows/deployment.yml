@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Authenticate to npm registry
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ./.npmrc
       - name: Publish package to Registry
         run: pnpm publish
         env:
