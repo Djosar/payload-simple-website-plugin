@@ -26,16 +26,20 @@ jobs:
       - name: Build Project
         run: pnpm build
       - name: Upload Artifact
-        id: artifact-upload
         uses: actions/upload-artifact@v4
         with:
           name: release
           path: dist/**
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: release
+          path: release
       - name: Create Release Draft
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.ref }}
           name: ${{ github.ref }}
-          artifacts: ${{ steps.artifact-upload.outputs.artifact-url }}
+          artifacts: release
           body: Draft, please replace
           draft: true
