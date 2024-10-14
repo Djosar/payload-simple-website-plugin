@@ -5,7 +5,7 @@
 		"url": "git+https://github.com/Djosar/payload-simple-website-plugin.git"
 	},
 	"main": "dist/index.js",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "My Personal simple website setup for payload",
 	"keywords": [
 		"payload",
