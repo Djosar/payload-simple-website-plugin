@@ -2,10 +2,13 @@ name: Publish
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - release
 
 jobs:
-  publish_package:
-    name: Publish NPM Package
+  build:
+    name: Build Project
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,13 +23,19 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
       - name: Install dependencies
         run: pnpm install
-      - name: Publish package to Registry
-        run: pnpm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create version tag
+      - name: Build
+        run: pnpm build
+      - name: Pack
         run: |
-          git tag v$(npm pkg get version | tr -d '"')
-          git push origin v$(npm pkg get version | tr -d '"')
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          mkdir release
+          pnpm pack --pack-destination=release
+      - name: Update ENV
+        run: echo "VERSION=$(npm pkg get version | tr -d '\"')" >> $GITHUB_ENV
+      - name: Create Release Draft
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ env.VERSION }}
+          name: Release ${{ env.VERSION }}
+          artifacts: release/*.tgz
+          body: Draft, please replace
+          draft: true
