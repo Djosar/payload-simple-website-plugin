@@ -4,6 +4,7 @@
 		"type": "git",
 		"url": "git+https://github.com/Djosar/payload-simple-website-plugin.git"
 	},
+	"main": "dist/index.js",
 	"version": "1.0.0",
 	"description": "My Personal simple website setup for payload",
 	"keywords": [
@@ -14,6 +15,13 @@
 	],
 	"author": "",
 	"license": "ISC",
+	"scripts": {
+		"build": "tsc",
+		"prepublishOnly": "pnpm build"
+	},
+	"files": [
+		"dist"
+	],
 	"devDependencies": {
 		"concurrently": "^9.0.1",
 		"payload": "^2.30.1",
