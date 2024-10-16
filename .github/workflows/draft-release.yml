@@ -23,6 +23,7 @@ jobs:
       - name: Store package version into ENV
         run: echo "VERSION=v$(pnpm pkg get version | tr -d '\"')" >> $GITHUB_ENV
       - name: Generate list of changes
+        id: commit_list
         uses: actions/github-script@v7
         with:
           script: |
