@@ -1,0 +1,49 @@
+name: Draft Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  create_release:
+    # Only run this when a release branch was merged into the dev branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Store package version into ENV
+        run: echo "VERSION=v$(pnpm pkg get version | tr -d '\"')" >> $GITHUB_ENV
+      - name: Generate list of changes
+        id: commit_list
+        run: |
+          # Initialize the commit list
+          echo "## Commits in this release:" > commit_messages.md
+          
+          # Loop through each commit and append the commit message to the list
+          for commit in "${{ toJSON(github.event.commits) }}"; do
+            message=$(echo $commit | jq -r '.message')
+            echo "- $message" >> commit_messages.md
+          done
+
+          # Save the content of commit_messages.md into an output variable
+          commit_list=$(cat commit_messages.md)
+          echo "::set-output name=commit_list::$commit_list"
+      - name: Create Release Draft
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ env.VERSION }}
+          name: Release ${{ env.VERSION }}
+          artifacts: release/*.tgz
+          body: ${{ steps.commit_list.outputs.commit_list }}
+          draft: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
