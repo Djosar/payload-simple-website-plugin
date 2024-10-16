@@ -26,6 +26,7 @@ jobs:
         id: commit_list
         uses: actions/github-script@v7
         with:
+          result-encoding: string
           script: |
             const commits = ${{ toJSON(github.event.commits) }};
             const formatted = commits.map(c => `- ${c.message}`).join("\n");
@@ -33,10 +34,9 @@ jobs:
       - name: Create Release Draft
         uses: ncipollo/release-action@v1
         with:
+          draft: true
           tag: ${{ env.VERSION }}
           name: Release ${{ env.VERSION }}
-          artifacts: release/*.tgz
           body: ${{ steps.commit_list.outputs.result }}
-          draft: true
           token: ${{ secrets.GITHUB_TOKEN }}
       
