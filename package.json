@@ -1,11 +1,11 @@
 {
 	"name": "@djosar/payload-simple-website-plugin",
+	"version": "1.0.0-alpha",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Djosar/payload-simple-website-plugin.git"
 	},
 	"main": "dist/index.js",
-	"version": "0.0.1",
 	"description": "My Personal simple website setup for payload",
 	"keywords": [
 		"payload",
