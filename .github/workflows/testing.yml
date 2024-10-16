@@ -1,0 +1,12 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  testing:
+    name: Placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Tests are successfull ;D jk"
