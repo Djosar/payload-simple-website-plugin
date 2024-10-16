@@ -12,9 +12,13 @@ permissions:
 jobs:
   create_release:
     # Only run this when a release branch was merged into the dev branch
-    if: github.event.pull_request.merged == 'true' && startsWith(github.event.pull_request.head.ref, 'release/') && github.event.pull_request.base.ref == 'dev'
+    # if: github.event.pull_request.merged == 'true' && startsWith(github.event.pull_request.head.ref, 'release/') && github.event.pull_request.base.ref == 'dev'
     runs-on: ubuntu-latest
     steps:
+      - run: |
+          echo "MERGED: ${{ github.event.pull_request.merged }}"
+          echo "MERGED: ${{ github.event.pull_request.head.ref }}"
+          echo "MERGED: ${{ github.event.pull_request.base.ref }}"
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Setup PNPM
