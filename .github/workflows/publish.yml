@@ -1,13 +1,10 @@
-name: Publish
+name: Publish & Draft Release
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - release
-
-permissions:
-  contents: write
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -28,20 +25,5 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm build
-      - name: Pack
-        run: |
-          mkdir release
-          pnpm pack --pack-destination=release
       - name: Publish
         run: pnpm publish --publish-branch=release
-      - name: Update ENV
-        run: echo "VERSION=$(npm pkg get version | tr -d '\"')" >> $GITHUB_ENV
-      - name: Create Release Draft
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ env.VERSION }}
-          name: Release ${{ env.VERSION }}
-          artifacts: release/*.tgz
-          body: Draft, please replace
-          draft: true
-          token: ${{ secrets.GITHUB_TOKEN }}
