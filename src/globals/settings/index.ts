@@ -1,1 +1,0 @@
-export { RoutingSettings } from './routing';
