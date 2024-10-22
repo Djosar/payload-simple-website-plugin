@@ -1,5 +1,5 @@
 import { TypeCompiler } from '@sinclair/typebox/compiler';
-import { simpleWebsitePlugin, SimpleWebsitePluginOptions } from "../src";
+import { simpleWebsitePlugin } from "../src";
 import { PluginSchema } from './schemas/plugin.schema';
 import { Config, Plugin } from 'payload/config';
 import { PayloadConfigMock } from './mocks/payload-config.mock';
