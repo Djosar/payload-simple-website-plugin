@@ -1,3 +1,5 @@
+import { SimpleWebsitePluginOptions } from "../../src";
+
 export const PluginOptionsMock = {
 	collections: {
 		pages: {
@@ -9,4 +11,4 @@ export const PluginOptionsMock = {
 	globals: {
 		routingSettings: {}
 	}
-};
+} as SimpleWebsitePluginOptions;

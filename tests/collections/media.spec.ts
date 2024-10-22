@@ -9,7 +9,6 @@ import { CollectionConfig, IncomingUploadType } from "payload/dist/exports/types
 const CollectionFactoryValidator = TypeCompiler.Compile(CollectionFactorySchema);
 const CollectionConfigValidator = TypeCompiler.Compile(CollectionConfigSchema);
 
-
 describe('My media collection factory', () => {
 	let config: CollectionConfig;
 
@@ -41,5 +40,17 @@ describe('My media collection factory', () => {
 		expect((config.upload as IncomingUploadType)?.staticURL).toBe('/media');
 		expect((config.upload as IncomingUploadType)?.staticDir).toBeDefined();
 		expect((config.upload as IncomingUploadType)?.staticDir).toBe('media');
-	})
+	});
+
+
+	it('should have the default staticURL and staticDir when created with set options', () => {
+		const opts = {...PluginOptionsMock};
+		opts.collections.media!.directory = 'test';
+		opts.collections.media!.url = '/test';
+		config = Media(PayloadConfigMock, opts);
+		expect((config.upload as IncomingUploadType)?.staticURL).toBeDefined();
+		expect((config.upload as IncomingUploadType)?.staticURL).toBe('/test');
+		expect((config.upload as IncomingUploadType)?.staticDir).toBeDefined();
+		expect((config.upload as IncomingUploadType)?.staticDir).toBe('test');
+	});
 });
