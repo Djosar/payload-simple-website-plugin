@@ -1,0 +1,1 @@
+export { RoutingSettings } from './settings/routing';

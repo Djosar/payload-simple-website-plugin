@@ -31,7 +31,11 @@ export default buildConfig({
 			collections: {
 				pages: {
 					blocks: ([] as Block[])
-				}
+				},
+				navigations: {},
+			},
+			globals: {
+				routingSettings: {}
 			}
 		})
 	],
