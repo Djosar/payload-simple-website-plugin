@@ -11,8 +11,8 @@ export const AccessFunctionSchema = Type.Function(
 );
 
 export const AccessSchema = Type.Object({
-	read: AccessFunctionSchema,
-	readDrafts: AccessFunctionSchema,
-	readVersions: AccessFunctionSchema,
-	update: AccessFunctionSchema
+	read: Type.Optional(AccessFunctionSchema),
+	readDrafts: Type.Optional(AccessFunctionSchema),
+	readVersions: Type.Optional(AccessFunctionSchema),
+	update: Type.Optional(AccessFunctionSchema)
 });
