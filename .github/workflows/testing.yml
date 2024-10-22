@@ -6,7 +6,16 @@ on:
       - dev
 jobs:
   testing:
-    name: Placeholder
+    name: Run tests
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Tests are successfull ;D jk"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Install Dependencies
+        run: |
+          pnpm install
+          pnpm test

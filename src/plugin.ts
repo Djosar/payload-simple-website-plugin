@@ -1,8 +1,8 @@
 import type { Config, Plugin } from 'payload/config';
 import { SimpleWebsitePluginOptions } from './types';
 import { Media, Pages } from './collections';
-import { RoutingSettings } from './globals/settings';
-import { Navigations } from './collections/navigations';
+import { Navigations } from './collections';
+import { RoutingSettings } from './globals';
 
 export const simpleWebsitePlugin = (options: SimpleWebsitePluginOptions): Plugin => (
 	config: Config
