@@ -8,7 +8,6 @@ export const GlobalConfigSchema = Type.Object({
 	slug: Type.String(),
 	fields: Type.Array(FieldSchema),
     admin: Type.Optional(Type.Object({})),
-    /** Extension point to add your custom data. */
     custom: Type.Optional(Type.Record(
 		Type.String(),
 		Type.Any()
