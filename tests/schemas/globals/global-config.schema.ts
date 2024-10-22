@@ -1,10 +1,10 @@
 import { Type } from "@sinclair/typebox";
-import { AccessSchema } from "./util/access.schema";
-import { HooksSchema } from "./util/hooks.schema";
-import { FieldSchema } from "./util/field.schema";
+import { AccessSchema } from "../util/access.schema";
+import { HooksSchema } from "../util/hooks.schema";
+import { FieldSchema } from "../util/field.schema";
 
 export const GlobalConfigSchema = Type.Object({
-	access: AccessSchema,
+	access: Type.Optional(AccessSchema),
 	slug: Type.String(),
 	fields: Type.Array(FieldSchema),
     admin: Type.Optional(Type.Object({})),
@@ -27,8 +27,4 @@ export const GlobalConfigSchema = Type.Object({
 		}),
 		Type.Boolean({  })
 	])),
-   /* dbName?: DBIdentifierName;
-    endpoints?: Omit<Endpoint, 'root'>[] | false;
-    fields: Field[];
-    versions?: IncomingGlobalVersions | boolean;*/
 });
