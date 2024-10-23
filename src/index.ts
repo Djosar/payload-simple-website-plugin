@@ -5,12 +5,12 @@ export type { SimpleWebsitePluginOptions } from './types';
 export type { CollectionFactory, GlobalFactory } from './types';
 
 // Collections
-export { Media } from './collections/media/index';
-export { Pages } from './collections/pages/index';
-export { Navigations } from './collections/navigations/index';
+export { Media } from './collections';
+export { Pages } from './collections';
+export { Navigations } from './collections';
 
 // Globals
-export { RoutingSettings } from './globals/settings/index';
+export { RoutingSettings } from './globals';
 
 // Fields
 export { slugField } from './fields/slug-field/index';
